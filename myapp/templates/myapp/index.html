@@ -1,3 +1,7 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}" />
+
 {% if presenter_data %}
     <ul>
     {% for line in presenter_data %}
