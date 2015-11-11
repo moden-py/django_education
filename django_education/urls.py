@@ -16,7 +16,16 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from myapp.views import UserEditView
+from myapp.forms import UserChangeFormNoPassword
+from myapp.models import MAIN_USER_ID
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', include('myapp.urls')),
+    url(r'edit/$', UserEditView.as_view(form_class=UserChangeFormNoPassword,
+                                        template_name='myapp/edit_user.html',
+                                        success_url='/'),
+        name='edit',
+        kwargs={'pk': MAIN_USER_ID}),
 ]
