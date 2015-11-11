@@ -16,6 +16,16 @@ def setup_admin(apps, schema_editor):
     )
     admin.save()
 
+    me = User(
+        username='moden',
+        first_name='Denis',
+        last_name='Matiychuk',
+        email='moden.py@yandex.ru',
+        password=make_password('moden'),
+        is_staff=True,
+    )
+    me.save()
+
 
 class Migration(migrations.Migration):
 
