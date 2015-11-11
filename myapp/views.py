@@ -1,10 +1,15 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.contrib.auth.models import User
 
 
 def index(request):
-    me = User.objects.get(username='moden')
-    return HttpResponse("{0} {1} {2}".format(me.first_name,
-                                             me.last_name,
-                                             me.email))
+    try:
+        me = User.objects.get(username='moden')
+    except User.DoesNotExist:
+        presenter_data = None
+    else:
+        presenter_data = (me.first_name,
+                          me.last_name,
+                          me.email)
+    context = {'presenter_data': presenter_data}
+    return render(request, 'myapp/index.html', context)

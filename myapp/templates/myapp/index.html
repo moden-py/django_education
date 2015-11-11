@@ -1,0 +1,14 @@
+{% if presenter_data %}
+    <ul>
+    {% for line in presenter_data %}
+        {% if '@' in line %}
+        <li><a href="mailto:{{ line }}?Subject=Hello%20dear%20friend">
+            {{ line }}</a></li>
+        {% else %}
+        <li><a>{{ line }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>There is no information about me :-( Run "manage.py syncdb" before.</p>
+{% endif %}
